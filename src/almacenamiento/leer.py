@@ -3,28 +3,32 @@
 from __future__ import annotations
 
 import json
+import logging
+import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parents[1]
-CARPETA_TXT = BASE_DIR / "resultados" / "txt"
-CARPETA_JSON = BASE_DIR / "resultados" / "json"
+__all__ = ["listar_analisis", "leer_json", "leer_txt", "buscar_por_fecha"]
 
+logger = logging.getLogger(__name__)
 
-def _asegurar_carpetas() -> None:
-    CARPETA_TXT.mkdir(parents=True, exist_ok=True)
-    CARPETA_JSON.mkdir(parents=True, exist_ok=True)
+_BASE_DIR = Path(__file__).resolve().parents[1]
+DEFAULT_CARPETA_TXT = _BASE_DIR / "resultados" / "txt"
+DEFAULT_CARPETA_JSON = _BASE_DIR / "resultados" / "json"
+
+CARPETA_TXT = Path(os.getenv("NLP_RESULTADOS_TXT", str(DEFAULT_CARPETA_TXT)))
+CARPETA_JSON = Path(os.getenv("NLP_RESULTADOS_JSON", str(DEFAULT_CARPETA_JSON)))
 
 
 def listar_analisis() -> list[str]:
     """Lista los analisis almacenados."""
-    _asegurar_carpetas()
+    logger.debug("Listando analisis en %s", CARPETA_JSON)
     archivos = sorted(CARPETA_JSON.glob("*.json"))
     return [archivo.name for archivo in archivos]
 
 
 def leer_json(nombre: str) -> dict:
     """Lee un analisis almacenado en formato JSON."""
-    _asegurar_carpetas()
+    logger.debug("Leyendo archivo JSON: %s", nombre)
     ruta = CARPETA_JSON / nombre
     if not ruta.exists():
         raise FileNotFoundError(f"No existe el archivo JSON: {nombre}")
@@ -33,7 +37,7 @@ def leer_json(nombre: str) -> dict:
 
 def leer_txt(nombre: str) -> str:
     """Lee un analisis almacenado en formato TXT."""
-    _asegurar_carpetas()
+    logger.debug("Leyendo archivo TXT: %s", nombre)
     ruta = CARPETA_TXT / nombre
     if not ruta.exists():
         raise FileNotFoundError(f"No existe el archivo TXT: {nombre}")
@@ -42,5 +46,5 @@ def leer_txt(nombre: str) -> str:
 
 def buscar_por_fecha(fecha: str) -> list[str]:
     """Filtra analisis por fecha contenida en el nombre del archivo."""
-    _asegurar_carpetas()
+    logger.debug("Buscando analisis con fecha: %s", fecha)
     return [nombre for nombre in listar_analisis() if fecha in nombre]

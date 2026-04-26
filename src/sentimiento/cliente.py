@@ -2,10 +2,15 @@
 
 from __future__ import annotations
 
+import logging
 import os
 
 from dotenv import load_dotenv
 from openai import OpenAI
+
+__all__ = ["get_client"]
+
+logger = logging.getLogger(__name__)
 
 _client: OpenAI | None = None
 
@@ -20,7 +25,9 @@ def get_client() -> OpenAI:
     load_dotenv()
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
+        logger.error("Falta la variable de entorno OPENAI_API_KEY")
         raise RuntimeError("Falta la variable de entorno OPENAI_API_KEY.")
 
     _client = OpenAI(api_key=api_key)
+    logger.info("Cliente OpenAI inicializado correctamente")
     return _client

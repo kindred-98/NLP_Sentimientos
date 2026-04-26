@@ -1,0 +1,4 @@
+select = ["E", "F", "W"]
+line-length = 100
+ignore = ["E402"]
+exclude = ["docs/"]
