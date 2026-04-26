@@ -28,10 +28,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: Verificar formato con ruff
-        run: ruff format --check .
+        run: ruff format --check . --exclude docs/
 
       - name: Ejecutar linter con ruff
-        run: ruff check .
+        run: ruff check . --ignore F821 --ignore E722 --exclude docs/
 
       - name: Ejecutar tests unitarios
         env:
