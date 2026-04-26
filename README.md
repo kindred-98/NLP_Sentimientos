@@ -26,9 +26,13 @@ NLP_Sentimientos/
 │   ├── resultados/
 │   │   ├── json/
 │   │   └── txt/
-│   ├── sentimiento/
-│   └── tests/
+│   └── sentimiento/
+├── tests/
+│   ├── conftest.py
+│   ├── test_almacenamiento.py
+│   └── test_analizador.py
 ├── main.py
+├── pytest.ini
 ├── requirements.txt
 └── README.md
 ```
