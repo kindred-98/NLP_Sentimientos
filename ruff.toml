@@ -1,4 +1,6 @@
-select = ["E", "F", "W"]
-line-length = 100
-ignore = ["E402"]
+[lint]
 exclude = ["docs/"]
+ignore = ["E402"]
+
+[lint.per-file-ignores]
+"docs/CodigoHeredado/*" = ["E402", "F821", "E722"]

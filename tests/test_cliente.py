@@ -17,7 +17,9 @@ def test_get_client_lanza_error_sin_api_key(monkeypatch: pytest.MonkeyPatch) -> 
 
 
 def test_get_client_rechaza_clave_vacia(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setattr(os, "getenv", lambda key: "" if key == "OPENAI_API_KEY" else None)
+    monkeypatch.setattr(
+        os, "getenv", lambda key: "" if key == "OPENAI_API_KEY" else None
+    )
 
     with pytest.raises(RuntimeError, match="OPENAI_API_KEY"):
         get_client()

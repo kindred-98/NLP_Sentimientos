@@ -16,7 +16,9 @@ def main() -> None:
         base_dir / "docs",
     ]
 
-    missing = [str(path.relative_to(base_dir)) for path in required_dirs if not path.exists()]
+    missing = [
+        str(path.relative_to(base_dir)) for path in required_dirs if not path.exists()
+    ]
     if missing:
         raise SystemExit(f"Faltan carpetas requeridas: {', '.join(missing)}")
 

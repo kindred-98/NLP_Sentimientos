@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from typing import Any
 
-from .cliente import get_client
+from .proveedor import generar_respuesta as _crear_respuesta
 
 __all__ = [
     "analizar_sentimiento_basico",
@@ -16,7 +17,6 @@ __all__ = [
 
 logger = logging.getLogger(__name__)
 
-MODEL_NAME = "gpt-4o-mini"
 MAX_LONGITUD_TEXTO = 10000
 
 
@@ -41,22 +41,13 @@ def _resumen_texto(texto: str, limite: int = 100) -> str:
     return texto if len(texto) <= limite else f"{texto[:limite]}..."
 
 
-def _crear_respuesta(prompt_sistema: str, texto: str) -> str:
-    logger.debug("Llamando a OpenAI para analisis de sentimiento")
-    client = get_client()
-    response = client.chat.completions.create(
-        model=MODEL_NAME,
-        messages=[
-            {"role": "system", "content": prompt_sistema},
-            {"role": "user", "content": texto},
-        ],
-        temperature=0.0,
-    )
-    contenido = response.choices[0].message.content
-    return contenido.strip() if contenido else ""
-
-
 def _parsear_json_respuesta(contenido: str) -> dict[str, Any]:
+    contenido = contenido.strip()
+    if not contenido:
+        raise json.JSONDecodeError("Respuesta vacia", "", 0)
+    match = re.search(r"\{.*\}", contenido, re.DOTALL)
+    if match:
+        contenido = match.group(0)
     return json.loads(contenido)
 
 
@@ -87,8 +78,15 @@ def analizar_sentimiento_intermedio(texto: str) -> dict[str, Any]:
     texto_limpio = _validar_texto(texto)
     contenido = _crear_respuesta(
         (
-            "Analiza el sentimiento del texto. Responde unicamente en formato JSON con: "
-            "sentimiento, polaridad, emociones e intensidad."
+            "You are a sentiment analysis assistant. Analyze the text and respond ONLY "
+            "with valid JSON. No text before or after. Format: "
+            '{"sentimiento": "positivo|negativo|neutral", "polaridad": -1.0 to 1.0, '
+            '"emociones": {"alegria": 0.0 to 1.0, "tristeza": 0.0 to 1.0, '
+            '"enojo": 0.0 to 1.0, "sorpresa": 0.0 to 1.0, "miedo": 0.0 to 1.0}, '
+            '"intensidad": "baja|media|alta"}. '
+            'Example: {"sentimiento": "positivo", "polaridad": 0.8, '
+            '"emociones": {"alegria": 0.9, "tristeza": 0.0, "enojo": 0.0, '
+            '"sorpresa": 0.1, "miedo": 0.0}, "intensidad": "alta"}'
         ),
         texto_limpio,
     )
@@ -116,9 +114,21 @@ def analizar_sentimiento_avanzado(texto: str) -> dict[str, Any]:
     texto_limpio = _validar_texto(texto)
     contenido = _crear_respuesta(
         (
-            "Analiza el sentimiento del texto en profundidad. "
-            "Responde unicamente en formato JSON con: sentimiento_global, polaridad, "
-            "fragmentos, justificacion, tonalidad y recomendacion."
+            "You are a deep sentiment analysis assistant. Respond ONLY with valid JSON. "
+            "No text before or after. Format: "
+            '{"sentimiento_global": "positivo|negativo|neutral", '
+            '"polaridad": -1.0 to 1.0, '
+            '"justificacion": "brief explanation of the analysis", '
+            '"tonalidad": "formal|coloquial|agresivo|entusiasta|neutro", '
+            '"recomendacion": "action or advice based on sentiment", '
+            '"fragmentos": [{"texto": "relevant text", '
+            '"sentimiento_individual": "positivo|negativo|neutral"}]}. '
+            'Example: {"sentimiento_global": "positivo", "polaridad": 0.7, '
+            '"justificacion": "Positive language with enthusiastic tone.", '
+            '"tonalidad": "entusiasta", '
+            '"recomendacion": "Continue this approach.", '
+            '"fragmentos": [{"texto": "excellent product", '
+            '"sentimiento_individual": "positivo"}]}'
         ),
         texto_limpio,
     )

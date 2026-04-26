@@ -36,7 +36,9 @@ def _generar_nombre_base() -> str:
     return f"analisis_{timestamp}"
 
 
-def _formatear_txt(texto_entrada: str, resultados: dict[str, Any], timestamp: str) -> str:
+def _formatear_txt(
+    texto_entrada: str, resultados: dict[str, Any], timestamp: str
+) -> str:
     basico = resultados.get("basico", {})
     intermedio = resultados.get("intermedio", {})
     avanzado = resultados.get("avanzado", {})

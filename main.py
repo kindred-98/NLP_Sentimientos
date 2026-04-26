@@ -74,7 +74,9 @@ def main() -> None:
     if args.texto:
         texto = " ".join(args.texto)
     else:
-        print("Modo interactivo. Escribe un texto y presiona Enter (Ctrl+C para salir).")
+        print(
+            "Modo interactivo. Escribe un texto y presiona Enter (Ctrl+C para salir)."
+        )
         try:
             texto = input("\nTexto: ").strip()
         except (EOFError, KeyboardInterrupt):

@@ -43,7 +43,9 @@ def analizar_sentimiento_multitexto(textos: list[str]) -> dict[str, Any]:
         "positivos": sum(1 for r in resultados if r.get("sentimiento") == "positivo"),
         "negativos": sum(1 for r in resultados if r.get("sentimiento") == "negativo"),
         "neutrales": sum(1 for r in resultados if r.get("sentimiento") == "neutral"),
-        "polaridad_promedio": sum(polaridades) / len(polaridades) if polaridades else 0.0,
+        "polaridad_promedio": sum(polaridades) / len(polaridades)
+        if polaridades
+        else 0.0,
     }
     logger.info("Analisis multitexto completado: %s", estadisticas)
     return {

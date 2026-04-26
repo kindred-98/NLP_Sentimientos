@@ -15,7 +15,9 @@ from sentimiento.niveles import (
 
 
 def test_sentimiento_basico_devuelve_categoria(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setattr("sentimiento.niveles._crear_respuesta", lambda prompt, texto: "positivo")
+    monkeypatch.setattr(
+        "sentimiento.niveles._crear_respuesta", lambda prompt, texto: "positivo"
+    )
 
     resultado = analizar_sentimiento_basico("Me ha gustado mucho")
 
@@ -44,7 +46,9 @@ def test_sentimiento_intermedio_parsea_json(monkeypatch: pytest.MonkeyPatch) -> 
         '{"sentimiento": "negativo", "polaridad": -0.6, '
         '"emociones": {"tristeza": 0.8}, "intensidad": "alta"}'
     )
-    monkeypatch.setattr("sentimiento.niveles._crear_respuesta", lambda prompt, texto: respuesta)
+    monkeypatch.setattr(
+        "sentimiento.niveles._crear_respuesta", lambda prompt, texto: respuesta
+    )
 
     resultado = analizar_sentimiento_intermedio("No me ha gustado nada")
 
@@ -74,7 +78,9 @@ def test_sentimiento_avanzado_parsea_respuesta(monkeypatch: pytest.MonkeyPatch) 
         '"fragmentos": [], "justificacion": "Hay equilibrio.", '
         '"tonalidad": "formal", "recomendacion": "Seguir observando"}'
     )
-    monkeypatch.setattr("sentimiento.niveles._crear_respuesta", lambda prompt, texto: respuesta)
+    monkeypatch.setattr(
+        "sentimiento.niveles._crear_respuesta", lambda prompt, texto: respuesta
+    )
 
     resultado = analizar_sentimiento_avanzado("Texto neutro")
 
@@ -90,7 +96,11 @@ def test_analizar_texto_orquesta_tres_niveles(monkeypatch: pytest.MonkeyPatch) -
     )
     monkeypatch.setattr(
         "sentimiento.analizador.analizar_sentimiento_intermedio",
-        lambda texto: {"nivel": "intermedio", "sentimiento": "positivo", "polaridad": 0.5},
+        lambda texto: {
+            "nivel": "intermedio",
+            "sentimiento": "positivo",
+            "polaridad": 0.5,
+        },
     )
     monkeypatch.setattr(
         "sentimiento.analizador.analizar_sentimiento_avanzado",
@@ -105,14 +115,20 @@ def test_analizar_texto_orquesta_tres_niveles(monkeypatch: pytest.MonkeyPatch) -
     assert resultado["avanzado"]["sentimiento_global"] == "positivo"
 
 
-def test_analizar_texto_devuelve_resultado_analisis(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_analizar_texto_devuelve_resultado_analisis(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     monkeypatch.setattr(
         "sentimiento.analizador.analizar_sentimiento_basico",
         lambda texto: {"nivel": "basico", "sentimiento": "positivo"},
     )
     monkeypatch.setattr(
         "sentimiento.analizador.analizar_sentimiento_intermedio",
-        lambda texto: {"nivel": "intermedio", "sentimiento": "positivo", "polaridad": 0.5},
+        lambda texto: {
+            "nivel": "intermedio",
+            "sentimiento": "positivo",
+            "polaridad": 0.5,
+        },
     )
     monkeypatch.setattr(
         "sentimiento.analizador.analizar_sentimiento_avanzado",
@@ -134,7 +150,9 @@ def test_multitexto_calcula_estadisticas(monkeypatch: pytest.MonkeyPatch) -> Non
     def falso_intermedio(texto: str) -> dict:
         return respuestas.pop(0)
 
-    monkeypatch.setattr("sentimiento.multitexto.analizar_sentimiento_intermedio", falso_intermedio)
+    monkeypatch.setattr(
+        "sentimiento.multitexto.analizar_sentimiento_intermedio", falso_intermedio
+    )
 
     resultado = analizar_sentimiento_multitexto(["a", "b", "c"])
 
@@ -142,7 +160,9 @@ def test_multitexto_calcula_estadisticas(monkeypatch: pytest.MonkeyPatch) -> Non
     assert resultado["estadisticas"]["positivos"] == 1
     assert resultado["estadisticas"]["negativos"] == 1
     assert resultado["estadisticas"]["neutrales"] == 1
-    assert resultado["estadisticas"]["polaridad_promedio"] == pytest.approx(0.1333333333)
+    assert resultado["estadisticas"]["polaridad_promedio"] == pytest.approx(
+        0.1333333333
+    )
 
 
 def test_multitexto_rechaza_tipo_invalido() -> None:

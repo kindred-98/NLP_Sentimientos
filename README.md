@@ -33,50 +33,20 @@ Crear un archivo `.env` en la raiz del proyecto:
 OPENAI_API_KEY=tu-clave-api-aqui
 ```
 
-## Uso
+## Interfaces disponibles
 
-### CLI
-
-Analizar un texto directamente desde terminal:
+### CLI (terminal)
 
 ```bash
 python main.py "El producto llego rapido, pero la calidad no es la esperada."
-```
-
-Modo interactivo:
-
-```bash
-python main.py
-```
-
-Guardar resultado tras el analisis:
-
-```bash
 python main.py -g "Me encanta este producto"
-```
-
-Listar el historial de analisis:
-
-```bash
 python main.py -l
 ```
 
-Mas opciones:
+### GUI (Tkinter)
 
 ```bash
-python main.py --help
-```
-
-### Como modulo
-
-```python
-from sentimiento.analizador import analizar_texto
-from almacenamiento.guardar import guardar_resultado
-
-texto = "El producto llego rapido, pero la calidad no es la esperada."
-resultado = analizar_texto(texto)
-rutas = guardar_resultado(texto, resultado)
-print(rutas)
+python gui.py
 ```
 
 ## Estructura del proyecto
@@ -110,9 +80,11 @@ NLP_Sentimientos/
 ├── .github/
 │   └── workflows/
 │       └── ci.yml
+├── gui.py
 ├── main.py
 ├── pytest.ini
 ├── requirements.txt
+├── ruff.toml
 └── README.md
 ```
 
@@ -188,7 +160,7 @@ El proyecto sigue la convencion [Conventional Commits](https://www.conventionalc
 
 ## Estado del proyecto
 
-Fases completadas:
+Todas las fases completadas:
 
 1. Estructura base del proyecto
 2. Modularizacion del codigo heredado
@@ -196,10 +168,7 @@ Fases completadas:
 4. Tests unitarios
 5. Pipeline de CI
 6. Documentacion tecnica
-
-Pendiente:
-
-- Interfaz grafica con Tkinter
+7. Interfaz grafica con Tkinter
 
 ## Licencia
 

@@ -33,7 +33,11 @@ def almacenamiento_temporal(
 def _resultados_ejemplo() -> dict:
     return {
         "basico": {"sentimiento": "negativo"},
-        "intermedio": {"sentimiento": "negativo", "polaridad": -0.4, "intensidad": "media"},
+        "intermedio": {
+            "sentimiento": "negativo",
+            "polaridad": -0.4,
+            "intensidad": "media",
+        },
         "avanzado": {"justificacion": "Predomina la decepcion por la calidad."},
     }
 
@@ -60,7 +64,9 @@ def test_guardar_json_crea_archivo(almacenamiento_temporal: tuple[Path, Path]) -
     assert '"texto": "Texto de prueba"' in ruta_json.read_text(encoding="utf-8")
 
 
-def test_listar_analisis_devuelve_archivos_json(almacenamiento_temporal: tuple[Path, Path]) -> None:
+def test_listar_analisis_devuelve_archivos_json(
+    almacenamiento_temporal: tuple[Path, Path],
+) -> None:
     guardar_mod.guardar_resultado("Uno", _resultados_ejemplo())
 
     analisis = leer_mod.listar_analisis()
@@ -69,7 +75,9 @@ def test_listar_analisis_devuelve_archivos_json(almacenamiento_temporal: tuple[P
     assert analisis[0].endswith(".json")
 
 
-def test_leer_json_recupera_contenido(almacenamiento_temporal: tuple[Path, Path]) -> None:
+def test_leer_json_recupera_contenido(
+    almacenamiento_temporal: tuple[Path, Path],
+) -> None:
     rutas = guardar_mod.guardar_resultado("Uno", _resultados_ejemplo())
 
     contenido = leer_mod.leer_json(Path(rutas["json"]).name)
@@ -78,7 +86,9 @@ def test_leer_json_recupera_contenido(almacenamiento_temporal: tuple[Path, Path]
     assert contenido["intermedio"]["polaridad"] == -0.4
 
 
-def test_leer_txt_recupera_contenido(almacenamiento_temporal: tuple[Path, Path]) -> None:
+def test_leer_txt_recupera_contenido(
+    almacenamiento_temporal: tuple[Path, Path],
+) -> None:
     rutas = guardar_mod.guardar_resultado("Uno", _resultados_ejemplo())
 
     contenido = leer_mod.leer_txt(Path(rutas["txt"]).name)
@@ -87,7 +97,9 @@ def test_leer_txt_recupera_contenido(almacenamiento_temporal: tuple[Path, Path])
     assert "Uno" in contenido
 
 
-def test_buscar_por_fecha_filtra_resultados(almacenamiento_temporal: tuple[Path, Path]) -> None:
+def test_buscar_por_fecha_filtra_resultados(
+    almacenamiento_temporal: tuple[Path, Path],
+) -> None:
     rutas = guardar_mod.guardar_resultado("Uno", _resultados_ejemplo())
     nombre = Path(rutas["json"]).name
     fecha = nombre.replace("analisis_", "")[:10]
@@ -97,6 +109,8 @@ def test_buscar_por_fecha_filtra_resultados(almacenamiento_temporal: tuple[Path,
     assert nombre in encontrados
 
 
-def test_leer_json_lanza_error_si_no_existe(almacenamiento_temporal: tuple[Path, Path]) -> None:
+def test_leer_json_lanza_error_si_no_existe(
+    almacenamiento_temporal: tuple[Path, Path],
+) -> None:
     with pytest.raises(FileNotFoundError):
         leer_mod.leer_json("inexistente.json")
