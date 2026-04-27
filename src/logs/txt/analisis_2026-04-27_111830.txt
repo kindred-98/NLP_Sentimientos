@@ -1,0 +1,10 @@
+============================================================
+ANALISIS DE SENTIMIENTO - 2026-04-27 11:18:30
+============================================================
+
+TEXTO ANALIZADO:
+angel esta loco
+
+RESULTADO BASICO: negativo
+RESULTADO INTERMEDIO: negativo | polaridad: -0.6 | intensidad: alta
+JUSTIFICACION: Negative language expressing disapproval.

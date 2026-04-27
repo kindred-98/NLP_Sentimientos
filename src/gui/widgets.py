@@ -8,7 +8,6 @@ from tkinter import scrolledtext, ttk
 from .tema import (
     COLUMNS,
     FONT_BASE,
-    FONT_BOLD,
     FONT_CONSOLA,
     HIST_COLUMNS,
     ROW_DESFAVORABLE,

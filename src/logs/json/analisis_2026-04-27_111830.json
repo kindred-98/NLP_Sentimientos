@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-04-27 11:18:30",
+  "texto": "angel esta loco",
+  "basico": {
+    "nivel": "basico",
+    "sentimiento": "negativo",
+    "texto_original": "angel esta loco"
+  },
+  "intermedio": {
+    "sentimiento": "negativo",
+    "polaridad": -0.6,
+    "emociones": {
+      "alegria": 0.0,
+      "tristeza": 0.2,
+      "enojo": 0.8,
+      "sorpresa": 0.1,
+      "miedo": 0.0
+    },
+    "intensidad": "alta",
+    "nivel": "intermedio",
+    "texto_original": "angel esta loco"
+  },
+  "avanzado": {
+    "sentimiento_global": "negativo",
+    "polaridad": -0.6,
+    "justificacion": "Negative language expressing disapproval.",
+    "tonalidad": "agresivo",
+    "recomendacion": "Avoid using aggressive language or comments that could hurt feelings.",
+    "fragmentos": [
+      {
+        "texto": "angel esta loco",
+        "sentimiento_individual": "negativo"
+      }
+    ],
+    "nivel": "avanzado",
+    "texto_original": "angel esta loco"
+  }
+}

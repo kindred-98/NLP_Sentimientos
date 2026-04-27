@@ -126,7 +126,9 @@ def test_guardar_resultado_rechaza_texto_no_string(
 def test_guardar_resultado_rechaza_resultados_no_dict(
     almacenamiento_temporal: tuple[Path, Path],
 ) -> None:
-    with pytest.raises(TypeError, match="resultados deben proporcionarse en un diccionario"):
+    with pytest.raises(
+        TypeError, match="resultados deben proporcionarse en un diccionario"
+    ):
         guardar_mod.guardar_resultado("texto", "no es dict")
 
 
@@ -135,3 +137,14 @@ def test_leer_txt_lanza_error_si_no_existe(
 ) -> None:
     with pytest.raises(FileNotFoundError):
         leer_mod.leer_txt("inexistente.txt")
+
+
+def test_get_rutas_resultados_devuelve_tupla(
+    almacenamiento_temporal: tuple[Path, Path],
+) -> None:
+    resultado = guardar_mod.get_rutas_resultados()
+    assert isinstance(resultado, tuple)
+    assert len(resultado) == 2
+    txt_path, json_path = resultado
+    assert "txt" in str(txt_path)
+    assert "json" in str(json_path)
