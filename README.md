@@ -270,9 +270,9 @@ Ejecutar la interfaz gráfica directamente:
 python gui.py
 ```
 
-![Interfaz de Usuario](docs/InterfazLlegada.png)
+![Interfaz de Usuario](InterfazLlegada.png)
 
-> 📁 **Nota:** La imagen de la interfaz se encuentra en: `docs/InterfazLlegada.png`
+> 📁 **Nota:** La imagen de la interfaz se encuentra en: `InterfazLlegada.png`
 
 ---
 
