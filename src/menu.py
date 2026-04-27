@@ -31,10 +31,10 @@ def menu_principal() -> None:
 def ejecutar_gui() -> None:
     print("\nIniciando GUI (cierra la ventana para volver al menu)...")
     try:
-        import subprocess
+        import subprocess  # noqa: B404
 
         BASE_DIR = Path(__file__).resolve().parent.parent
-        subprocess.run([sys.executable, str(BASE_DIR / "gui.py")], check=True)
+        subprocess.run([sys.executable, str(BASE_DIR / "gui.py")], check=True)  # noqa: B603
     except Exception as exc:
         print(f"Error al iniciar GUI: {exc}")
 

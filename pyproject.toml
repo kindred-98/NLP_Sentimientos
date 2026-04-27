@@ -1,0 +1,8 @@
+[tool.bandit]
+skip = ["B404", "B603"]
+
+[tool.bandit.blacklist]
+import-subprocess = []
+
+[tool.bandit.plugins]
+subprocess_popen_with_shell_equals_true = []
