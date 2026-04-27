@@ -272,6 +272,8 @@ python gui.py
 
 ![Interfaz de Usuario](docs/InterfazLlegada.png)
 
+> 📁 **Nota:** La imagen de la interfaz se encuentra en: `docs/InterfazLlegada.png`
+
 ---
 
 ## ⚙️ Configuración
