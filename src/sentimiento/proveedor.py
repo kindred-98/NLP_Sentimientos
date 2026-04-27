@@ -20,7 +20,9 @@ def generar_respuesta(
     return _generar_ollama(prompt_sistema, texto, modelo)
 
 
-def _generar_ollama(prompt_sistema: str, texto: str, modelo: str) -> str:  # pragma: no cover
+def _generar_ollama(
+    prompt_sistema: str, texto: str, modelo: str
+) -> str:  # pragma: no cover
     from ollama import chat
 
     response = chat(

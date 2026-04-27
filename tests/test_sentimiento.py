@@ -43,14 +43,15 @@ class TestProveedor:
             assert args[0] == "Eres un analisis de sentimientos"
             assert args[1] == "el texto"
 
-def _test_generar_respuesta_usa_modelo_defecto(self) -> None:
-        from sentimiento.proveedor import generar_respuesta, OLLAMA_MODEL
 
-        with patch("sentimiento.proveedor._generar_ollama") as mock:
-            mock.return_value = "positivo"
-            generar_respuesta("prompt", "texto")
-            _, _, modelo = mock.call_args[0]
-            assert modelo == OLLAMA_MODEL
+def _test_generar_respuesta_usa_modelo_defecto(self) -> None:
+    from sentimiento.proveedor import generar_respuesta, OLLAMA_MODEL
+
+    with patch("sentimiento.proveedor._generar_ollama") as mock:
+        mock.return_value = "positivo"
+        generar_respuesta("prompt", "texto")
+        _, _, modelo = mock.call_args[0]
+        assert modelo == OLLAMA_MODEL
 
 
 class TestNiveles:

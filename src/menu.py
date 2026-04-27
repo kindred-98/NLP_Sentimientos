@@ -32,6 +32,7 @@ def ejecutar_gui() -> None:
     print("\nIniciando GUI (cierra la ventana para volver al menu)...")
     try:
         import subprocess
+
         BASE_DIR = Path(__file__).resolve().parent.parent
         subprocess.run([sys.executable, str(BASE_DIR / "gui.py")], check=True)
     except Exception as exc:
@@ -54,7 +55,8 @@ def ejecutar_cli() -> None:
     parser = argparse.ArgumentParser(description="Analizador de sentimiento con IA")
     parser.add_argument("texto", nargs="*", help="Texto a analizar")
     parser.add_argument(
-        "-n", "--nivel",
+        "-n",
+        "--nivel",
         choices=["basico", "intermedio", "avanzado"],
         default="avanzado",
     )
@@ -69,7 +71,11 @@ def ejecutar_cli() -> None:
 
     if args.listar:
         historial = listar_analisis()
-        print(f"{len(historial)} analisis guardados" if historial else "No hay analisis guardados.")
+        print(
+            f"{len(historial)} analisis guardados"
+            if historial
+            else "No hay analisis guardados."
+        )
         return
 
     if args.texto:
@@ -94,7 +100,9 @@ def ejecutar_cli() -> None:
     print("RESULTADO")
     print("=" * 50)
     print(f"Basico: {basico.get('sentimiento', 'N/D')}")
-    print(f"Intermedio: {intermedio.get('sentimiento', 'N/D')} (polaridad {intermedio.get('polaridad', 'N/D')})")
+    print(
+        f"Intermedio: {intermedio.get('sentimiento', 'N/D')} (polaridad {intermedio.get('polaridad', 'N/D')})"
+    )
     print(f"Avanzado: {avanzado.get('sentimiento_global', 'N/D')}")
     print(f"Justificacion: {avanzado.get('justificacion', 'N/D')}")
 
