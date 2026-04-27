@@ -114,3 +114,24 @@ def test_leer_json_lanza_error_si_no_existe(
 ) -> None:
     with pytest.raises(FileNotFoundError):
         leer_mod.leer_json("inexistente.json")
+
+
+def test_guardar_resultado_rechaza_texto_no_string(
+    almacenamiento_temporal: tuple[Path, Path],
+) -> None:
+    with pytest.raises(TypeError, match="texto de entrada debe ser una cadena"):
+        guardar_mod.guardar_resultado(123, {"basico": {}})
+
+
+def test_guardar_resultado_rechaza_resultados_no_dict(
+    almacenamiento_temporal: tuple[Path, Path],
+) -> None:
+    with pytest.raises(TypeError, match="resultados deben proporcionarse en un diccionario"):
+        guardar_mod.guardar_resultado("texto", "no es dict")
+
+
+def test_leer_txt_lanza_error_si_no_existe(
+    almacenamiento_temporal: tuple[Path, Path],
+) -> None:
+    with pytest.raises(FileNotFoundError):
+        leer_mod.leer_txt("inexistente.txt")

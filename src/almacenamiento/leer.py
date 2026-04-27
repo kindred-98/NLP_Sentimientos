@@ -12,8 +12,8 @@ __all__ = ["listar_analisis", "leer_json", "leer_txt", "buscar_por_fecha"]
 logger = logging.getLogger(__name__)
 
 _BASE_DIR = Path(__file__).resolve().parents[1]
-DEFAULT_CARPETA_TXT = _BASE_DIR / "resultados" / "txt"
-DEFAULT_CARPETA_JSON = _BASE_DIR / "resultados" / "json"
+DEFAULT_CARPETA_TXT = _BASE_DIR / "logs" / "txt"
+DEFAULT_CARPETA_JSON = _BASE_DIR / "logs" / "json"
 
 CARPETA_TXT = Path(os.getenv("NLP_RESULTADOS_TXT", str(DEFAULT_CARPETA_TXT)))
 CARPETA_JSON = Path(os.getenv("NLP_RESULTADOS_JSON", str(DEFAULT_CARPETA_JSON)))

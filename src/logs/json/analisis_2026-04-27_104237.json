@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-04-27 10:42:37",
+  "texto": "Un cuento para trabajar la autoestima, el sentimiento de inferioridad y la importancia de valorar las pequeñas cosas. A menudo nos sentimos poca cosa, pero si miramos a las personas que nos rodean, nos daremos cuenta de que podemos ser grandes, muy grandes. Los gestos más pequeños son importantes y dan pie a acciones gigantes. Cada uno de nosotros puede marcar la diferencia. A través de la mirada de una niña es como mejor valoramos la grandeza del mundo, que nos emociona y nos transforma.",
+  "basico": {
+    "nivel": "basico",
+    "sentimiento": "positivo",
+    "texto_original": "Un cuento para trabajar la autoestima, el sentimiento de inferioridad y la importancia de valorar la..."
+  },
+  "intermedio": {
+    "sentimiento": "positivo",
+    "polaridad": 0.85,
+    "emociones": {
+      "alegria": 0.9,
+      "tristeza": 0.1,
+      "enojo": 0.0,
+      "sorpresa": 0.2,
+      "miedo": 0.0
+    },
+    "intensidad": "alta",
+    "nivel": "intermedio",
+    "texto_original": "Un cuento para trabajar la autoestima, el sentimiento de inferioridad y la importancia de valorar la..."
+  },
+  "avanzado": {
+    "sentimiento_global": "positivo",
+    "polaridad": 0.85,
+    "justificacion": "The text contains positive language and an encouraging message about self-esteem and appreciating small things.",
+    "tonalidad": "entusiasta",
+    "recomendacion": "Promote the ideas of valuing small gestures and focusing on personal growth.",
+    "fragmentos": [
+      {
+        "texto": "nos sentimos poca cosa",
+        "sentimiento_individual": "negativo"
+      },
+      {
+        "texto": "pueden ser grandes, muy grandes",
+        "sentimiento_individual": "positivo"
+      },
+      {
+        "texto": "los gestos más pequeños son importantes",
+        "sentimiento_individual": "positivo"
+      },
+      {
+        "texto": "marcan la diferencia",
+        "sentimiento_individual": "positivo"
+      }
+    ],
+    "nivel": "avanzado",
+    "texto_original": "Un cuento para trabajar la autoestima, el sentimiento de inferioridad y la importancia de valorar la..."
+  }
+}

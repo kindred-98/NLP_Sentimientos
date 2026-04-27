@@ -48,3 +48,6 @@ src/almacenamiento/leer.py
 - analisis reutilizable desde varias interfaces
 - persistencia desacoplada del analisis
 - testing mas sencillo mediante mocks y funciones pequeñas
+
+
+![alt text](<Captura de pantalla 2026-04-27 104831.png>)

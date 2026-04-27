@@ -46,7 +46,11 @@ class Widgets:
         ).pack(side=tk.LEFT)
 
     def _crear_entrada_texto(self, container: ttk.Frame) -> None:
-        input_frame = ttk.Frame(container)
+        input_frame = ttk.LabelFrame(
+            container,
+            text="📝 Texto a analizar",
+            padding=10,
+        )
         input_frame.pack(fill=tk.BOTH, pady=(0, 10))
 
         text_border = tk.Frame(input_frame, relief="sunken", borderwidth=2, bg="white")
@@ -73,15 +77,31 @@ class Widgets:
         botones = ttk.Frame(container)
         botones.pack(fill=tk.X, pady=(0, 10))
 
-        self.btn_analizar = ttk.Button(
-            botones, text="ANALIZAR SENTIMIENTO", command=None
+        self.btn_analizar = tk.Button(
+            botones,
+            text="🔍 ANALIZAR SENTIMIENTO",
+            bg="#dcdad5",
+            relief="raised",
+            borderwidth=2,
         )
         self.btn_analizar.pack(side=tk.LEFT, padx=(0, 5))
 
-        self.btn_limpiar = ttk.Button(botones, text="LIMPIAR", command=None)
+        self.btn_limpiar = tk.Button(
+            botones,
+            text="🧹 LIMPIAR",
+            bg="#dcdad5",
+            relief="raised",
+            borderwidth=2,
+        )
         self.btn_limpiar.pack(side=tk.LEFT, padx=(0, 5))
 
-        self.btn_guardar = ttk.Button(botones, text="GUARDAR", command=None)
+        self.btn_guardar = tk.Button(
+            botones,
+            text="💾 GUARDAR",
+            bg="#dcdad5",
+            relief="raised",
+            borderwidth=2,
+        )
         self.btn_guardar.pack(side=tk.LEFT)
 
     def _crear_pestanas(self, container: ttk.Frame) -> None:
@@ -93,10 +113,10 @@ class Widgets:
         self.tab_just = ttk.Frame(self.notebook)
         self.tab_historial = ttk.Frame(self.notebook)
 
-        self.notebook.add(self.tab_tabla, text="Resultados por Nivel")
-        self.notebook.add(self.tab_json, text="Analisis Detallado")
-        self.notebook.add(self.tab_just, text="Justificacion")
-        self.notebook.add(self.tab_historial, text="Historial")
+        self.notebook.add(self.tab_tabla, text="📊 Resultados por Nivel")
+        self.notebook.add(self.tab_json, text="📋 Analisis Detallado")
+        self.notebook.add(self.tab_just, text="💡 Justificacion y Recomendacion")
+        self.notebook.add(self.tab_historial, text="📜 Historial")
 
         self._crear_tree_resultados()
         self._crear_text_json()
@@ -160,29 +180,39 @@ class Widgets:
         self.btn_limpiar_hist.pack(side=tk.LEFT)
 
     def _crear_leyenda(self, container: ttk.Frame) -> None:
-        leg_frame = ttk.Frame(container)
-        leg_frame.pack(fill=tk.X, anchor=tk.W, pady=(0, 5))
-        ttk.Label(leg_frame, text="Que significa la polaridad?", font=FONT_BOLD).pack(
-            anchor=tk.W
+        frame_card = ttk.LabelFrame(
+            container,
+            text="¿Qué significa la polaridad?",
+            padding=10,
         )
+        frame_card.pack(fill=tk.X, pady=(0, 5))
 
-        leg_text = ttk.Frame(container)
-        leg_text.pack(fill=tk.X)
-        ttk.Label(
-            leg_text,
-            text="POSITIVA (+0.00 a +1.00): emociones positivas",
-            foreground="#008000",
-        ).pack(anchor=tk.W)
-        ttk.Label(
-            leg_text,
-            text="NEGATIVA (-1.00 a -0.00): emociones negativas",
-            foreground="#D00000",
-        ).pack(anchor=tk.W)
-        ttk.Label(
-            leg_text,
-            text="NEUTRAL [0.00]: sin emociones fuertes",
-            foreground="#808080",
-        ).pack(anchor=tk.W)
+        label_pos = tk.Label(
+            frame_card,
+            text="🟢 POSITIVA (+0.00 a +1.00): El texto expresa emociones positivas",
+            fg="#008000",
+            anchor="w",
+            bg="#dcdad5",
+        )
+        label_pos.pack(fill=tk.X)
+
+        label_neg = tk.Label(
+            frame_card,
+            text="🔴 NEGATIVA (-1.00 a -0.00): El texto expresa emociones negativas",
+            fg="#D00000",
+            anchor="w",
+            bg="#dcdad5",
+        )
+        label_neg.pack(fill=tk.X)
+
+        label_neu = tk.Label(
+            frame_card,
+            text="⚪ NEUTRAL (0.00): El texto no muestra emociones fuertes",
+            fg="#808080",
+            anchor="w",
+            bg="#dcdad5",
+        )
+        label_neu.pack(fill=tk.X)
 
     def _crear_estado(self, container: ttk.Frame) -> None:
         status = ttk.Frame(container)

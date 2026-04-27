@@ -12,7 +12,7 @@ def aplicar_tema(style: ttk.Style) -> None:
 
     style.configure("TFrame", background=BG, relief="flat")
     style.configure("TLabel", background=BG, font=FONT_BASE, foreground=FG)
-    style.configure("TButton", font=FONT_BASE, padding=2)
+    style.configure("TButton", font=FONT_BASE, padding=2, background=BG)
     style.configure("TNotebook", background=BG, tabposition="nw", borderwidth=1)
     style.configure(
         "TNotebook.Tab",
@@ -40,7 +40,7 @@ def aplicar_tema(style: ttk.Style) -> None:
     style.map(
         "TButton",
         foreground=[("disabled", "#808080")],
-        background=[("active", "#DEDBD5")],
+        background=[("active", BG), ("!active", BG)],
     )
     style.map(
         "TNotebook.Tab",

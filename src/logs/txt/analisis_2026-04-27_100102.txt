@@ -1,0 +1,10 @@
+============================================================
+ANALISIS DE SENTIMIENTO - 2026-04-27 10:01:02
+============================================================
+
+TEXTO ANALIZADO:
+Aunque es difícil, el capitán puede decidir no dejarse llevar por la tormenta. "No se trata de no sentir la rabia, sino de no romper el barco ni dañar a nadie con ella", explicó el padre. Laura decidió respirar profundamente y pintar su tormenta, mientras Víctor salió a correr un poco para que el calor del enfado pasara.
+
+RESULTADO BASICO: neutral
+RESULTADO INTERMEDIO: positivo | polaridad: 0.65 | intensidad: media
+JUSTIFICACION: The text describes a situation without clear positive or negative emotions.

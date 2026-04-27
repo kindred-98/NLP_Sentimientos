@@ -1,0 +1,10 @@
+============================================================
+ANALISIS DE SENTIMIENTO - 2026-04-27 10:42:37
+============================================================
+
+TEXTO ANALIZADO:
+Un cuento para trabajar la autoestima, el sentimiento de inferioridad y la importancia de valorar las pequeñas cosas. A menudo nos sentimos poca cosa, pero si miramos a las personas que nos rodean, nos daremos cuenta de que podemos ser grandes, muy grandes. Los gestos más pequeños son importantes y dan pie a acciones gigantes. Cada uno de nosotros puede marcar la diferencia. A través de la mirada de una niña es como mejor valoramos la grandeza del mundo, que nos emociona y nos transforma.
+
+RESULTADO BASICO: positivo
+RESULTADO INTERMEDIO: positivo | polaridad: 0.85 | intensidad: alta
+JUSTIFICACION: The text contains positive language and an encouraging message about self-esteem and appreciating small things.

@@ -8,7 +8,7 @@ from typing import Optional
 
 logger = logging.getLogger(__name__)
 
-OLLAMA_MODEL: str = os.getenv("NLP_OLLAMA_MODEL", "gemma3:4b")
+OLLAMA_MODEL: str = os.getenv("NLP_OLLAMA_MODEL", "qwen2.5:3b")
 
 
 def generar_respuesta(

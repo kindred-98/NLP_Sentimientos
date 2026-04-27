@@ -1,0 +1,10 @@
+============================================================
+ANALISIS DE SENTIMIENTO - 2026-04-27 10:38:11
+============================================================
+
+TEXTO ANALIZADO:
+Este entrañable álbum es perfecto para trabajar la amistad y el trabajo en equipo. Galardonado con el Premio Internacional Enric Solbes de Álbum Ilustrado, esta historia, basada en un cuento popular ruso nos enseña que, por pequeñas que sean, todas las personas son necesarias y aportan algo a la comunidad.
+
+RESULTADO BASICO: positivo
+RESULTADO INTERMEDIO: positivo | polaridad: 0.92 | intensidad: alta
+JUSTIFICACION: El texto utiliza palabras positivas como 'perfecto', 'perfecta' y elogia el premio recibido, además de enfatizar la importancia del trabajo en equipo.
