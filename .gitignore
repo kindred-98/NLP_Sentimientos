@@ -110,3 +110,7 @@ __marimo__/
 target/
 .qodo/
 .streamlit/secrets.toml
+
+# Documentación de bloques (archivos locales, no sube a git)
+Docs/Bloques_Resultados/
+Docs/temp.txt
