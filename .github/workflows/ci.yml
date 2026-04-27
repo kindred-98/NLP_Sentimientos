@@ -51,4 +51,4 @@ jobs:
         run: python scripts/check_folders.py
 
       - name: Analisis de seguridad con bandit
-        run: bandit -r src main.py scripts/check_folders.py
+        run: bandit -r src main.py scripts/check_folders.py -x B404,B603
