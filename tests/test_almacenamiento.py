@@ -83,7 +83,7 @@ def test_leer_json_recupera_contenido(
     contenido = leer_mod.leer_json(Path(rutas["json"]).name)
 
     assert contenido["texto"] == "Uno"
-    assert contenido["intermedio"]["polaridad"] == -0.4
+    assert contenido["intermedio"]["polaridad"] == pytest.approx(-0.4)
 
 
 def test_leer_txt_recupera_contenido(

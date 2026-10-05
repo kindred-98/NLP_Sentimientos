@@ -54,7 +54,7 @@ def test_sentimiento_intermedio_parsea_json(monkeypatch: pytest.MonkeyPatch) -> 
 
     assert resultado["nivel"] == "intermedio"
     assert resultado["sentimiento"] == "negativo"
-    assert resultado["polaridad"] == -0.6
+    assert resultado["polaridad"] == pytest.approx(-0.6)
 
 
 def test_sentimiento_intermedio_devuelve_error_si_json_invalido(
@@ -111,7 +111,7 @@ def test_analizar_texto_orquesta_tres_niveles(monkeypatch: pytest.MonkeyPatch) -
 
     assert resultado["texto"] == "Buen producto"
     assert resultado["basico"]["nivel"] == "basico"
-    assert resultado["intermedio"]["polaridad"] == 0.5
+    assert resultado["intermedio"]["polaridad"] == pytest.approx(0.5)
     assert resultado["avanzado"]["sentimiento_global"] == "positivo"
 
 
@@ -177,4 +177,4 @@ def test_multitexto_con_lista_vacia() -> None:
     assert resultado["estadisticas"]["positivos"] == 0
     assert resultado["estadisticas"]["negativos"] == 0
     assert resultado["estadisticas"]["neutrales"] == 0
-    assert resultado["estadisticas"]["polaridad_promedio"] == 0.0
+    assert resultado["estadisticas"]["polaridad_promedio"] == pytest.approx(0.0)

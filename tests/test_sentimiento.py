@@ -107,7 +107,7 @@ class TestNiveles:
             )
             resultado = analizar_sentimiento_intermedio("texto de prueba")
             assert resultado["sentimiento"] == "negativo"
-            assert resultado["polaridad"] == -0.75
+            assert resultado["polaridad"] == pytest.approx(-0.75)
 
     def test_intermedio_maneja_error_parseo(self) -> None:
         from sentimiento.niveles import analizar_sentimiento_intermedio

@@ -1,16 +1,17 @@
 # ============================================
 # ANÁLISIS DE SENTIMIENTO AVANZADO
 # ============================================
+import json
 import os
+from typing import Any
 
 from dotenv import load_dotenv
-import json
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
-def analizar_sentimiento_basico(texto: str) -> dict:
+def analizar_sentimiento_basico(texto: str) -> dict[str, Any]:
     """Nivel básico: solo categoría"""
 
     response = client.chat.completions.create(
@@ -34,7 +35,7 @@ def analizar_sentimiento_basico(texto: str) -> dict:
     }
 
 
-def analizar_sentimiento_intermedio(texto: str) -> dict:
+def analizar_sentimiento_intermedio(texto: str) -> dict[str, Any]:
     """Nivel intermedio: polaridad, puntuación, emociones"""
 
     response = client.chat.completions.create(
@@ -60,7 +61,7 @@ def analizar_sentimiento_intermedio(texto: str) -> dict:
         resultado["nivel"] = "intermedio"
         resultado["texto_original"] = texto[:100] + "..."
         return resultado
-    except:
+    except (json.JSONDecodeError, TypeError):
         return {
             "nivel": "intermedio",
             "error": "No se pudo parsear respuesta",
@@ -68,7 +69,7 @@ def analizar_sentimiento_intermedio(texto: str) -> dict:
         }
 
 
-def analizar_sentimiento_avanzado(texto: str) -> dict:
+def analizar_sentimiento_avanzado(texto: str) -> dict[str, Any]:
     """Nivel avanzado: con justificación y fragmentos relevantes"""
 
     response = client.chat.completions.create(
@@ -96,7 +97,7 @@ def analizar_sentimiento_avanzado(texto: str) -> dict:
         resultado["nivel"] = "avanzado"
         resultado["texto_original"] = texto[:100] + "..."
         return resultado
-    except:
+    except (json.JSONDecodeError, TypeError):
         return {
             "nivel": "avanzado",
             "error": "No se pudo parsear respuesta",
@@ -104,7 +105,7 @@ def analizar_sentimiento_avanzado(texto: str) -> dict:
         }
 
 
-def analizar_sentimiento_multitexto(textos: list) -> list:
+def analizar_sentimiento_multitexto(textos: list[str]) -> dict[str, Any]:
     """Analiza sentimiento de múltiples textos y calcula estadísticas"""
 
     resultados = []
