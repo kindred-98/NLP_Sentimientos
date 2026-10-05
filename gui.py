@@ -124,7 +124,7 @@ class GUI(tk.Tk):
                 self.after(0, self._guardar_auto)
 
         except Exception as e:
-            logger.error("Error en analisis: %s", str(e))
+            logger.exception("Error en analisis")
             self.after(
                 0,
                 lambda err=e: messagebox.showerror("Error", f"Ocurrio un error: {err}"),
@@ -231,7 +231,7 @@ class GUI(tk.Tk):
             else:
                 self._lbl_status.config(text="Sin analisis guardados.")
         except Exception as e:
-            logger.error("Error al cargar historial: %s", e)
+            logger.exception("Error al cargar historial")
             self._lbl_status.config(text=f"Error: {e}")
 
     def _limpiar_historial(self) -> None:
